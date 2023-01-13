@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>JSON Parser</title>
+<script src="jquery-3.6.1.js"></script>
+</head>
+<body>
+
+<h1>JSON Parser</h1>
+
+<p>Upload JSON file here:</p>
+
+<input type="file" id="fileToLoad" accept=".json" autocomplete="off">
+
+</br>
+</br>
+</br>
+<div style="display: flex;">
+  <div id="inputParent" style="margin: 5px;">
+    <div><label>Input</label></div>
+    <div><textarea id="inputBox" readonly style="resize:none;" rows="25" cols="50"></textarea></div>
+  </div>
+  <div id="outputParent" style="margin: 5px;">
+    <div><label>Output</label></div>
+    <div><textarea id="outputBox" readonly style="resize:none;" rows="25" cols="50"></textarea></div>
+  </div>
+</div>
+
+<button type="button" id="uploadButton">Upload</button>
+<pre id="outputServer"></pre>
+
+<script>
+var el = document.getElementById('fileToLoad');
+el.onchange = function() {
+  var fileReader = new FileReader();
+  fileReader.onload=function(e) {
+    subjectModels = JSON.parse(e.target.result);
+
+    //////// parse Participant elements
+    var zaJson = {}; // 34385499
+    var P_Gender = 'Gender';
+    var P_Age = 'Age';
+    var P_Landmarks = 'Landmarks';
+    var P_Measurements = 'Measurements';
+    zaJson[P_Gender] = [];
+    zaJson[P_Age] = [];
+    zaJson[P_Landmarks] = [];
+    zaJson[P_Measurements] = [];
+
+    zaJson[P_Gender].push(subjectModels.gender);
+    zaJson[P_Age].push(subjectModels.age);      
+    
+    for(var i=0; i<subjectModels.features.length; i++){
+      var valsJson = {
+        "LandmarkID":subjectModels.features[i]["abbrv"],
+        "xVal":subjectModels.features[i]["xVal"],
+        "yVal":subjectModels.features[i]["yVal"],
+        "zVal":subjectModels.features[i]["zVal"]
+      };
+      zaJson[P_Landmarks].push(valsJson);
+    } // end for      
+    for(var i=0; i<subjectModels.measurements.length; i++){
+      var valsJson = {
+        "MeasurementID":subjectModels.measurements[i]["id"],
+        "Value":subjectModels.measurements[i]["value"]
+      };
+      zaJson[P_Measurements].push(valsJson);
+    } // end for
+
+    /////// parse Landmark elements
+    // var zaJson = {}; // 34385499
+    // var landID = 'LandmarkID';
+    // var landID_Name = 'LandmarkID_Name';
+    // var landName = 'Name';
+    // zaJson[landID] = [];
+    // zaJson[landName] = [];
+    // zaJson[landID_Name] = [];
+    // for (var i = 0; i < subjectModels.features.length; i++) {            
+    //       zaJson[landID].push(subjectModels.features[i]["abbrv"]);
+    //       zaJson[landID_Name].push(subjectModels.features[i]["id"]);
+    //       zaJson[landName].push(subjectModels.features[i]["name"]);
+    // } // end for
+    
+    ////// parse Measurement elements
+    // var zaJson = {};
+    // var MeasID = 'MeasurementID';
+    // var MeasName = 'Name';
+    // var MeasType = 'Type';
+    // var MeasLand = 'Landmarks';
+    // zaJson[MeasID] = [];
+    // zaJson[MeasName] = [];
+    // zaJson[MeasType] = [];
+    // zaJson[MeasLand] = [];
+    // for(var i = 0; i < subjectModels.measurements.length; i++) {
+    //       zaJson[MeasID].push(subjectModels.measurements[i]["id"]);
+    //       zaJson[MeasName].push(subjectModels.measurements[i]["name"]);
+    //       zaJson[MeasType].push(subjectModels.measurements[i]["type"]);
+    //       zaJson[MeasLand].push(subjectModels.measurements[i]["usedFeatures"]);
+    //   } // end for
+
+    document.getElementById('inputBox').textContent = JSON.stringify(subjectModels, undefined, 2);
+    document.getElementById('outputBox').textContent = JSON.stringify(zaJson, undefined, 2);
+    document.getElementById('uploadButton').addEventListener("click", function(){ return testPost(zaJson) }); 
+  } // end onload
+  fileReader.readAsText(this.files[0]);
+} // end el onchange
+
+function testPost(zaJson) {
+    $.ajax({
+      method: 'POST',
+      url: 'http://localhost:8080',      
+      data: zaJson,
+      datatype: 'application/json',
+      success: function(data, status) { // https://www.tutorialsteacher.com/jquery/jquery-ajax-method
+        $("#outputServer").text("Status: " + status + " || Data sent to server"); // 4973039
+      }
+    });
+}
+</script>
+
+</body>
+</html>
