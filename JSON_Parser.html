@@ -3,18 +3,18 @@
 <head>
 <title>JSON Parser</title>
 <script src="jquery-3.6.1.js"></script>
+
+<!-- JSON Parser webpage interface for inserting 3D Landmark Markings and Measurements into a database -->
+
 </head>
 <body>
 
 <h1>JSON Parser</h1>
-
+<!-- Prompt user for JSON file -->
 <p>Upload JSON file here:</p>
-
 <input type="file" id="fileToLoad" accept=".json" autocomplete="off">
-
 </br>
-</br>
-</br>
+<!-- Display boxes for user to see changes in JSON -->
 <div style="display: flex;">
   <div id="inputParent" style="margin: 5px;">
     <div><label>Input</label></div>
@@ -24,88 +24,170 @@
     <div><label>Output</label></div>
     <div><textarea id="outputBox" readonly style="resize:none;" rows="25" cols="50"></textarea></div>
   </div>
+  <div id="numberOutputParent" style="margin: 5px;">
+    <div><label>Varied Output</label></div>
+    <div><textarea id="numberOutputBox" readonly style="resize:none;" rows="25" cols="50"></textarea></div>
+  </div>
 </div>
 
-<button type="button" id="uploadButton">Upload</button>
+<button type="button" id="uploadButton1">Upload Original</button>
+<button type="button" id="uploadButton2">Upload Varied</button>
+<!-- Buttons for different user choices for upload -->
 <pre id="outputServer"></pre>
+<!-- Upload status -->
 
 <script>
 var el = document.getElementById('fileToLoad');
-el.onchange = function() {
+el.onchange = function() { // when user uploads file
   var fileReader = new FileReader();
   fileReader.onload=function(e) {
+    // parse JSON file
     subjectModels = JSON.parse(e.target.result);
+    document.getElementById('inputBox').textContent = JSON.stringify(subjectModels, undefined, 2);
 
-    //////// parse Participant elements
-    var zaJson = {}; // 34385499
-    var P_Gender = 'Gender';
-    var P_Age = 'Age';
-    var P_Landmarks = 'Landmarks';
-    var P_Measurements = 'Measurements';
-    zaJson[P_Gender] = [];
-    zaJson[P_Age] = [];
-    zaJson[P_Landmarks] = [];
-    zaJson[P_Measurements] = [];
+    // parse Participant elements
+    // create JSON to hold parsed JSON data
+    var zaJson1 = {}; // 34385499
+    zaJson1["Gender"] = subjectModels.gender;
+    zaJson1["Age"] = subjectModels.age;
+    zaJson1["Ethnicity"] = "null";      // manually set to null - change if future JSONs have this element
+    zaJson1["FacialSurgery"] = "null";  //
+    zaJson1["Landmarks"] = [];
+    zaJson1["Measurements"] = [];
 
-    zaJson[P_Gender].push(subjectModels.gender);
-    zaJson[P_Age].push(subjectModels.age);      
+    if(zaJson1["Gender"] == "") { // if inserted gender and age do not have any values, set to null
+      zaJson1["Gender"] = "null";
+    } // end if gender
+    if(zaJson1["Age"] == "") {
+      zaJson1["Age"] = "null";
+    } // end if age
     
-    for(var i=0; i<subjectModels.features.length; i++){
-      var valsJson = {
+    for(var i=0; i<subjectModels.features.length; i++){ // iterate through features in original JSON
+      var valsJson = { // get feature/landmark abbreviation and x-y-z values
         "LandmarkID":subjectModels.features[i]["abbrv"],
         "xVal":subjectModels.features[i]["xVal"],
         "yVal":subjectModels.features[i]["yVal"],
         "zVal":subjectModels.features[i]["zVal"]
       };
-      zaJson[P_Landmarks].push(valsJson);
-    } // end for      
-    for(var i=0; i<subjectModels.measurements.length; i++){
-      var valsJson = {
+      // push data to created JSON Landmarks
+      zaJson1["Landmarks"].push(valsJson);
+    } // end features for
+    for(var i=0; i<subjectModels.measurements.length; i++){ // iterate through measurements in original JSON
+      var valsJson = { // get measurement abbreviation and value
         "MeasurementID":subjectModels.measurements[i]["id"],
         "Value":subjectModels.measurements[i]["value"]
       };
-      zaJson[P_Measurements].push(valsJson);
-    } // end for
-
-    /////// parse Landmark elements
-    // var zaJson = {}; // 34385499
-    // var landID = 'LandmarkID';
-    // var landID_Name = 'LandmarkID_Name';
-    // var landName = 'Name';
-    // zaJson[landID] = [];
-    // zaJson[landName] = [];
-    // zaJson[landID_Name] = [];
-    // for (var i = 0; i < subjectModels.features.length; i++) {            
-    //       zaJson[landID].push(subjectModels.features[i]["abbrv"]);
-    //       zaJson[landID_Name].push(subjectModels.features[i]["id"]);
-    //       zaJson[landName].push(subjectModels.features[i]["name"]);
-    // } // end for
+      // push data to created JSON measurements
+      zaJson1["Measurements"].push(valsJson);
+    } // end measurements for
     
-    ////// parse Measurement elements
-    // var zaJson = {};
-    // var MeasID = 'MeasurementID';
-    // var MeasName = 'Name';
-    // var MeasType = 'Type';
-    // var MeasLand = 'Landmarks';
-    // zaJson[MeasID] = [];
-    // zaJson[MeasName] = [];
-    // zaJson[MeasType] = [];
-    // zaJson[MeasLand] = [];
-    // for(var i = 0; i < subjectModels.measurements.length; i++) {
-    //       zaJson[MeasID].push(subjectModels.measurements[i]["id"]);
-    //       zaJson[MeasName].push(subjectModels.measurements[i]["name"]);
-    //       zaJson[MeasType].push(subjectModels.measurements[i]["type"]);
-    //       zaJson[MeasLand].push(subjectModels.measurements[i]["usedFeatures"]);
-    //   } // end for
+    // display created JSON in HTML
+    document.getElementById('outputBox').textContent = JSON.stringify(zaJson1, undefined, 2);
 
-    document.getElementById('inputBox').textContent = JSON.stringify(subjectModels, undefined, 2);
-    document.getElementById('outputBox').textContent = JSON.stringify(zaJson, undefined, 2);
-    document.getElementById('uploadButton').addEventListener("click", function(){ return testPost(zaJson) }); 
+    // Varied JSON - for extrapolating data
+    // shallow copy created JSON
+    var zaJson2 = Object.assign({}, zaJson1);
+
+    for(var i=0; i<zaJson2.Landmarks.length; i++) { // iterate through landmarks in copy JSON
+      // create random number
+      var theNum = randomNum(); // randomNum function
+      var xVal = zaJson2.Landmarks[i].xVal;
+      var yVal = zaJson2.Landmarks[i].yVal;
+      var zVal = zaJson2.Landmarks[i].zVal;
+      // there were some type conflicts when using the toFixed function,
+      // which is why there are several variable declarations and such
+      zaJson2.Landmarks[i].xVal = parseFloat((xVal + theNum).toFixed(2)); // 1527803
+      theNum = randomNum();
+      zaJson2.Landmarks[i].yVal = parseFloat((yVal + theNum).toFixed(2));
+      theNum = randomNum();
+      zaJson2.Landmarks[i].zVal = parseFloat((zVal + theNum).toFixed(2));
+    } // end vary landmark for
+
+    for(var i=0; i<zaJson2.Measurements.length; i++) { // iterate through measurements in copy JSON
+      // create random number
+      var theNum = randomNum(min=1.0);
+      var val = parseFloat(zaJson2.Measurements[i].Value);
+      zaJson2.Measurements[i].Value = parseFloat((val + theNum).toFixed(2));
+    } // end vary measurement for
+
+    if(subjectModels.gender=="") { // insert gender if empty/null
+      var coinFlip = Math.floor(Math.random() * 2) + 2
+      if(coinFlip%2==0) {
+        zaJson2["Gender"] = "M";
+      } else {
+        zaJson2["Gender"] = "F";
+      } // end if else coinFlip
+    } else { // else if gender already exists, use that gender
+      zaJson2["Gender"] = subjectModels.gender;
+    } // end if else gender
+    
+    if(subjectModels.age=="") { // insert age if empty/null
+      zaJson2["Age"] = Math.floor(Math.random()*22) + 18;
+    } else { // else if age already exists, use that age
+      zaJson2["Age"] = subjectModels.age;
+    } // end if else age
+    
+    if(!subjectModels.hasOwnProperty("FacialSurgery")) { // check if original/created JSON has FacialSurgery element
+      // if not, insert random facial surgery
+      // list of possible surgeries
+      var surgeries = [
+        "No Facial Surgery",
+        "Brow/forehead lift",
+        "Ear pinning",
+        "Chin, cheek, or jaw reshaping",
+        "Ear reshaping",
+        "Eyelid lift",
+        "Facelift",
+        "Facial implants",
+        "Hair replacement surgery",
+        "Lip augmentation",
+        "Rhinoplasty",
+        "Other",
+        "Prefer not to specify"
+      ]; // end surgeries
+      // randomly choose one
+      var coinFlip = Math.floor(Math.random()*13);
+      zaJson2["FacialSurgery"] = surgeries[coinFlip];      
+    } else { // else if facialsurgery already exists, use that surgery
+      zaJson2["FacialSurgery"] = subjectModels.facial_surgery;
+    } // end if else facial surgery
+
+    if(!subjectModels.hasOwnProperty("ethnicity")) { // check if original/created JSON has ethnicity element
+      // if not, insert random ethnicity
+      // list of possible ethnicities
+      var ethnicities = [
+        "White",
+        "Black or African American",
+        "American Indian or Alaska Native",
+        "Asian",
+        "Native Hawaiian or Other Pacific Islander",
+        "Hispanic"
+      ]; // end ethnicities
+      var coinFlip = Math.floor(Math.random()*5);
+      zaJson2["Ethnicity"] = ethnicities[coinFlip];      
+    } else { // else if ethnicity already exists, use that ethnicity
+      zaJson2["Ethnicity"] = subjectModels.facial_surgery;
+    } // end if else ethnicity
+
+    // display varied JSON in HTML
+    document.getElementById('numberOutputBox').textContent = JSON.stringify(zaJson2, undefined, 2);
+
+    // send created JSON to node server through button
+    document.getElementById('uploadButton1').addEventListener("click", function(){ return testPost(zaJson1) }); 
+    // send varied JSON to node server through button
+    document.getElementById('uploadButton2').addEventListener("click", function(){ return testPost(zaJson2) }); 
   } // end onload
   fileReader.readAsText(this.files[0]);
 } // end el onchange
 
-function testPost(zaJson) {
+function randomNum(max=5.0, min=2.5) {
+  // function for extrapolating data
+  // by default, adds a value between -2.5 to 2.5
+  var result = ((Math.random() * max) - min).toFixed(2)
+  return parseFloat(result)
+} // end randonNum
+
+function testPost(zaJson) { // send POST request to node server
     $.ajax({
       method: 'POST',
       url: 'http://localhost:8080',      
@@ -113,8 +195,8 @@ function testPost(zaJson) {
       datatype: 'application/json',
       success: function(data, status) { // https://www.tutorialsteacher.com/jquery/jquery-ajax-method
         $("#outputServer").text("Status: " + status + " || Data sent to server"); // 4973039
-      }
-    });
+      } // end success
+    }); // end testPost
 }
 </script>
 
