@@ -48,6 +48,7 @@ el.onchange = function() { // when user uploads file
     // parse Participant elements
     // create JSON to hold parsed JSON data
     var zaJson1 = {}; // 34385499
+    zaJson1["Type"] = 0;
     zaJson1["Gender"] = subjectModels.gender;
     zaJson1["Age"] = subjectModels.age;
     zaJson1["Ethnicity"] = "null";      // manually set to null - change if future JSONs have this element

@@ -1,0 +1,27 @@
+.listStat {
+    flex:1;
+    display: flex;  
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  
+  .listStat div {
+    margin-right: 10px;
+    margin-bottom: 0px;
+    height: 160px;
+    min-height: 100%;
+  }
+  .listStat div:last-child {
+    margin-right: 0px;
+  }
+  
+  #Measurement, #Landmark {
+    flex: 1;  
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  
+  #statsCheckboxes {
+    flex: 1;
+    /* min-width: max-content; */
+  }

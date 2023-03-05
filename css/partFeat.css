@@ -1,0 +1,15 @@
+.partFeat {
+  display: flex;
+}
+
+.partFeat form {
+  padding-right: 10px;
+}
+
+.partFeat form:last-child {
+  padding-right: 0px;
+}
+
+form select {
+  width: 150px;
+}

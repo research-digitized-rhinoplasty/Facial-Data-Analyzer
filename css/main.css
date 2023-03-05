@@ -1,0 +1,17 @@
+.feature_boxes {
+    display: flex;
+    flex-direction: column;
+  }
+  
+.feature_boxes, .partFeat, .listStat, .listStat div {
+/* .feature_boxes, .feature_boxes div { */
+    border:         1px solid black;
+    width:          fit-content;
+    padding:        10px; 
+    margin-bottom:  10px;
+}
+
+.feature_boxes div:last-child {
+  margin-bottom: 0px;
+}
+

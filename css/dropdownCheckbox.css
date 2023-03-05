@@ -1,0 +1,31 @@
+/* dropdown box stuff */
+
+/* form {
+  border:         1px solid black;
+  width:          fit-content;
+  padding:        10px; 
+  margin-bottom:  10px;
+} */
+
+
+.multiSelect {
+  position: relative;
+}
+
+.overSelect {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.dropCheck {
+  display: none;
+  border: 1px #dadada solid;
+  padding: 5px;
+}
+
+.dropCheck label {
+  display: block;
+}

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Statistics</title>
+<script type="text/javascript" src="js/sendJSON.js"></script>
+<script type="text/javascript" src="js/displayLandMeas.js"></script>
+<script type="text/javascript" src="js/dropdownCheckbox.js"></script>
+
+<!-- <script type="text/javascript" src="js/jquery-3.6.1.js"></script> -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+
+
+<!-- JSON Parser webpage interface for inserting 3D Landmark Markings and Measurements into a database -->
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/partFeat.css">
+<link rel="stylesheet" href="css/listStat.css">
+<link rel="stylesheet" href="css/dropdownCheckbox.css">
+
+</head>
+<body>
+
+<h1>Statistics</h1>
+
+<div class="feature_boxes">
+  <div class="partFeat">
+    <form>
+      <label id="genderLabel">Gender</label>
+      <br>
+      <div class="multiSelect" id="gender">
+        <select>
+          <option id="genderOptionLabel">Gender</option>
+        </select>
+        <div class="overSelect"></div>
+      </div>
+      <div class="dropCheck" id="genderCheckbox">
+        <label><input type="checkbox" id="genderAll" />All</label>
+        <label><input type="checkbox" id="M" />Male</label>
+        <label><input type="checkbox" id="F" />Female</label>
+      </div>
+    </form>
+
+    <form>
+      <label id="ethnicityLabel">Ethnicity</label>
+      <br>
+      <div class="multiSelect" id="ethnicity">
+        <select>
+          <option id="ethnicityOptionLabel">Ethnicity</option>
+        </select>
+        <div class="overSelect"></div>
+      </div>
+      <div class="dropCheck" id="ethnicityCheckbox">
+        <label><input type="checkbox" id="ethnicityAll" />All</label>
+        <label><input type="checkbox" />White</label>
+        <label><input type="checkbox" />Black or African American</label>
+        <label><input type="checkbox" />American Indian or Alaska Native</label>
+        <label><input type="checkbox" />Asian</label>
+        <label><input type="checkbox" />Native Hawaiian or Other Pacific Islander</label>
+        <label><input type="checkbox" />Hispanic</label>
+      </div>
+    </form>
+
+    <form>
+      <label id="surgeryLabel">Facial Surgery</label>
+      <br>
+      <div class="multiSelect" id="surgery">
+        <select>
+          <option id="surgeryOptionLabel">Facial Surgery</option>
+        </select>
+        <div class="overSelect"></div>
+      </div>
+      <div class="dropCheck" id="surgeryCheckbox">
+        <label><input type="checkbox" id="surgeryAll" />Any</label>
+        <label><input type="checkbox" />No Facial Surgery</label>
+        <label><input type="checkbox" />Brow/forehead lift</label>
+        <label><input type="checkbox" />Ear pinning</label>
+        <label><input type="checkbox" />Chin, cheek, or jaw reshaping</label>
+        <label><input type="checkbox" />Eyelid lift</label>
+        <label><input type="checkbox" />Facelift</label>
+        <label><input type="checkbox" />Facial implants</label>
+        <label><input type="checkbox" />Hair replacement surgery</label>
+        <label><input type="checkbox" />Lip augmentation</label>
+        <label><input type="checkbox" />Rhinoplasty</label>
+        <label><input type="checkbox" />Other</label>
+        <label><input type="checkbox" />Prefer not to specify</label>
+      </div>
+    </form>
+
+    <form id="ageStartForm">
+      <label for="ageStart">Age Start</label>
+      <br>
+      <input type="number" id="ageStart" min="18" max="60" value="18"/>
+    </form>
+    <form id="ageEndForm">
+      <label for="ageEnd">Age End</label>
+      <br>
+      <input type="number" id="ageEnd" min="18" max="100" value="25"/>
+    </form>
+  </div>
+
+  <div class="listStat">
+    <div id="Measurement">
+      <input type="radio" id="measChoice" autocomplete="off" checked onclick="landChoice.checked=false">
+      <label for="measChoice"><strong>Measurements</strong></label><br><hr>
+    </div>
+    <div id="Landmark">
+      <input type="radio" id="landChoice" autocomplete="off" onclick="measChoice.checked=false">
+      <label for="landChoice"><strong>Landmarks</strong></label><br><hr>
+    </div>
+    <div id="statsCheckbox">
+      <label><strong>Statistics</strong></label><br><hr>
+      <input type="checkbox" id="Average">
+      <label for="Average">Average</label><br>
+      <input type="checkbox" id="Standard_Deviation">
+      <label for="Standard_Deviation">Standard Deviation</label><br>
+      <input type="checkbox" id="Minimum">
+      <label for="Minimum">Minimum</label><br>
+      <input type="checkbox" id="Maximum">
+      <label for="Maximum">Maximum</label><br>
+      <input type="checkbox" id="Median">
+      <label for="Median">Median</label><br>
+      <!-- <input type="checkbox" id="Z_Score">
+      <label for="Z_Score">Z-Score</label><br> -->
+    </div>
+  </div>
+</div>
+
+<div style="padding:10px">
+<button id="submitButton">Submit</button>
+<!-- <button id="testButton">Test</button> -->
+<pre id="output"></pre>
+</div>
+
+</body>
+</html>
