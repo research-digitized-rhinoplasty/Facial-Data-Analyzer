@@ -1,9 +1,9 @@
-/*
-Dropdown Checkboxes
-
-For special 'dropdown checkbox' implementation, it requires some javascript/html magic
-Inspiration: https://stackoverflow.com/a/19207528
-*/
+/**
+ * Dropdown Checkboxes
+ * 
+ * For special 'dropdown checkbox' implementation, it requires some javascript/html magic
+ * Inspiration: https://stackoverflow.com/a/19207528
+ */
 
 window.addEventListener("load", () => {
     function selectAll(parent, dropCheck) {
