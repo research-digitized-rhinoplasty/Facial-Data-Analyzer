@@ -1,8 +1,8 @@
-/*
-Check If Empty
-
-Checks if any required user input is left empty
-*/
+/**
+ * Check If Empty
+ * 
+ * Checks if any required user input is left empty
+ */
 
 function checkIfEmptyDriver(emptyArr, landMeasChoice) {
     // check if html elements are emtpy, add to array
