@@ -1,0 +1,27 @@
+#output {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
+  
+  #statsOutput {
+    height:         200px;
+    width:          1000px;
+  }
+  
+  #participantOutput {
+    height: 600px;
+    width:  800px;
+    margin-bottom: 10px;
+  }
+  
+  #participantChartChoices div, #statsChartChoices {
+    border:   1px solid black;
+    width:    fit-content;
+    padding:  5px;
+    margin:   10px;
+  }
+  
+  #statsChartOutput {
+    width: 1000px;
+  }

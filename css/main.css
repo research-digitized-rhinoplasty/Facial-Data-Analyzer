@@ -4,7 +4,6 @@
   }
   
 .feature_boxes, .partFeat, .listStat, .listStat div {
-/* .feature_boxes, .feature_boxes div { */
     border:         1px solid black;
     width:          fit-content;
     padding:        10px; 
@@ -15,3 +14,6 @@
   margin-bottom: 0px;
 }
 
+#submitButtonDiv {
+  padding:10px;
+}
