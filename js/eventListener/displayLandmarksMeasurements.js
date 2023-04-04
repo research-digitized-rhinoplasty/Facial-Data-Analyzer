@@ -1,8 +1,8 @@
-/*
-Display Landmarks and/or Measurements
-
-Retrieves values from database and prints them on web page
-*/
+/**
+ * Display Landmarks and/or Measurements
+ * 
+ * Retrieves values from database and prints them on web page
+ */
 
 window.addEventListener("load", () => {
     // uncheck everything from previous session (autocomplete=off)
