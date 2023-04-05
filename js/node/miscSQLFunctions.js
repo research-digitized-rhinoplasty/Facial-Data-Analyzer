@@ -3,8 +3,8 @@ var sqlFunc = require('./sqlFunctions')
 module.exports = {
     getLandmarkMeasurementList: async function getLandmarkMeasurementList(theJSON) {
         // retrieves landmark and measurement names for website onload
-        let measResult = await sqlFunc.getStats(theJSON.sqlM, 2)
-        let landResult = await sqlFunc.getStats(theJSON.sqlL, 2)
+        let measResult = await sqlFunc.getRows(theJSON.sqlM)
+        let landResult = await sqlFunc.getRows(theJSON.sqlL)
         let measName = []
         let landName = []
         let measAbbrv = []
