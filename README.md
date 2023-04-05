@@ -1,5 +1,5 @@
-# DigitizedRhinoplastyJSONParser
-'Web-based Software for Data Analysis of 3D Facial Measurements and Landmark Locations' created to work with Dr. Oguzhan Topsakal's Digitized Rhinoplasty for my Masters Project.
+# Digitized Rhinoplasty - Web-based Software for Data Analysis of 3D Facial Measurements and Landmark Locations
+Created to work with Dr. Oguzhan Topsakal's Digitized Rhinoplasty for my Masters Project.
 
 To start:
 
