@@ -1,0 +1,24 @@
+{
+  "name": "express",
+  "version": "4.18.1",
+  "description": "",
+  "main": "parentNode.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NickolasPhan/DigitizedRhinoplastyJSONParser.git"
+  },
+  "author": "Nickolas Phan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NickolasPhan/DigitizedRhinoplastyJSONParser/issues"
+  },
+  "homepage": "https://github.com/NickolasPhan/DigitizedRhinoplastyJSONParser#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "mysql": "^2.18.1"
+  }
+}
