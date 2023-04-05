@@ -5,11 +5,11 @@ To start:
 
 1. Install npm dependencies
 
-    * Open cmd or something similar and navigate to the project directory (/).
+    * Open ```cmd``` or something similar and navigate to the project directory (/).
     * Confirm the details inside package.json, then type ```npm install```.
     * A folder called ```npm_modules``` will be downloaded to the project directory.
     * If for any reason you wish to delete the project files and run into issues deleting ```npm_modules```:
-        * Using cmd or something similar, in the project directory, run the command ```npx rimraf --glob ./node_modules```.
+        * Using ```cmd``` or something similar, in the project directory, run the command ```npx rimraf --glob ./node_modules```.
     
 2. Input database details
 
@@ -19,7 +19,7 @@ To start:
 
 3. Run node server
 
-    * Using Command Prompt, Visual Studio Code, or something similar, run the node server (```src/server.js```).
+    * Using ```cmd``` or something similar, run the node server (```src/server.js```).
     * The server runs on port 8000. If you wish to change the port, you must change the port number in the following files:
         * ```src/server.js```
             * Line 7
