@@ -29,7 +29,7 @@ To start:
             * Line 69
 
 4. Use the application
-    * Open the file ```index.html``` in a web browser.
+    * Open the file ```src/index.html``` in a web browser.
     * Select participant features, measurements or landmarks, and statistics.
     * Press submit.
     * Choose between options to view statistical information.
