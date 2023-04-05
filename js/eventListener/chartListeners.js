@@ -1,8 +1,8 @@
-/**
- * Chart Listeners
- * 
- * Listen for user clicks for chart choices (statistics, participant features)
- */
+/*
+Chart Listeners
+
+Listen for user clicks for chart choices (statistics, participant features)
+*/
 
 window.addEventListener("load", () => {
     // listen for choice between table (statistics) and chart (participant feature) choice
