@@ -6,16 +6,17 @@
   
   #statsOutput {
     height:         200px;
-    width:          1000px;
+    width:          90%;
+    margin-bottom: 10px;
   }
   
   #participantOutput {
     height: 600px;
-    width:  800px;
+    width:  90%;
     margin-bottom: 10px;
   }
   
-  #participantChartChoices div, #statsChartChoices {
+  #chartFeatureChoices, #participantChartStyleChoices, #statsChartChoices {
     border:   1px solid black;
     width:    fit-content;
     padding:  5px;
@@ -23,5 +24,5 @@
   }
   
   #statsChartOutput {
-    width: 1000px;
+    width: 90%;
   }

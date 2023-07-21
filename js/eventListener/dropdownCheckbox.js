@@ -11,9 +11,11 @@ window.addEventListener("load", () => {
         allButton.addEventListener("click", () => {
             let inputs = document.querySelectorAll('#' + dropCheck + ' input[type=checkbox]:not(#' + parent + 'All)')
             inputs.forEach((e) => {
-                if(!e.checked) {
+                if(allButton.checked) {
                     e.checked = true
-                } // end if
+                } else {
+                    e.checked = false
+                }// end if
             }) // end forEach
         }) // end eventListener
     } // end selectAll
@@ -30,29 +32,44 @@ window.addEventListener("load", () => {
     } // end deselectAllButton
 
     var expanded = false;
+    var alreadyExpanded = "";
 
     let elements = document.getElementsByClassName('multiSelect')
+    // let checkboxInputs = document.querySelectorAll('[id$=ParentLabel]')
     for(var i=0; i<elements.length; i++) {
         elements[i].addEventListener("click", showCheckboxes)
     } // end for
 
     function showCheckboxes() {
-        var dropCheck = this.id + "Checkbox"
+        var dropCheck = this.id + "CheckboxDropdown"
+        var checkboxes = document.getElementById(dropCheck)
+        var otherCheckboxes = document.querySelectorAll('[id$=CheckboxDropdown]:not(#'+ dropCheck +')')
+
         deselectAllButton(this.id, dropCheck)
         selectAll(this.id, dropCheck)
-        var checkboxes = document.getElementById(dropCheck);
+
         if (!expanded) {
-            checkboxes.style.display = "block";
-            expanded = true;
-        } else {
-            checkboxes.style.display = "none";
-            expanded = false;
+            checkboxes.style.display = "flex"
+            checkboxes.style.flexDirection = "column"
+            
+            expanded = true
+            alreadyExpanded = dropCheck
+        } else if(expanded && dropCheck!=alreadyExpanded) {
+            otherCheckboxes.forEach((e) => {
+                e.style.display = "none"
+            })
+            checkboxes.style.display = "flex"
+            checkboxes.style.flexDirection = "column"
+            alreadyExpanded = dropCheck
+        } else if(expanded) {
+            checkboxes.style.display = "none"
+            expanded = false
         }
         updateField(this.id)
     }
 
     function updateField(parent) {
-        let dropCheck = parent + "Checkbox"
+        let dropCheck = parent + "CheckboxDropdown"
         var checkboxesCt = document.getElementById(dropCheck).querySelectorAll('input[type=checkbox]:not(#' + parent + 'All)')
         var checkboxes = document.getElementById(dropCheck).querySelectorAll('input[type=checkbox]:checked:not(#' + parent + 'All)')
         var values = []
@@ -62,7 +79,7 @@ window.addEventListener("load", () => {
 
         let label = parent + "OptionLabel"
         if(checkboxes.length==0) {
-            document.getElementById(label).innerHTML = document.getElementById(parent + 'Label').innerHTML
+            document.getElementById(label).innerHTML = document.getElementById(parent + 'ParentLabel').innerHTML
         } else if(checkboxes.length==checkboxesCt.length) {
             if(parent=='surgery') {
                 document.getElementById(label).innerHTML = "Any"

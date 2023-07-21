@@ -1,4 +1,4 @@
-/* Node server for connecting to MySQL database and (further) parsing JSON data to MySQL commands */
+ /* Node server for connecting to MySQL database and (further) parsing JSON data to MySQL commands */
 
 const express = require('express')
 var cors = require('cors')

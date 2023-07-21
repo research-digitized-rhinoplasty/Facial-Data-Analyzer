@@ -73,6 +73,8 @@ window.addEventListener("load", () => {
           // write output to tables, charts, and console
           console.log(data)
           $('#errorOutput').empty()
+          let resultStatement = document.getElementById('participantTableMessage')
+          resultStatement.innerHTML = "Presenting statistics for " + data.participants.length + " data instances"
           writeStats(data.statistics)
           writeW2ui(data.participants, 'participantGrid')
           createParticipantChart(data.partChartValues)
@@ -83,7 +85,7 @@ window.addEventListener("load", () => {
 
   function retrieveDropdownValues(parent) {
     // retrieve dropdown values
-    let dropCheck = parent + "Checkbox"
+    let dropCheck = parent + "CheckboxDropdown"
     var checkboxes = document.getElementById(dropCheck).querySelectorAll('input[type=checkbox]:checked:not(#' + parent + 'All)')
     var vals = []
     for(var i=0; i<checkboxes.length; i++) {

@@ -1,28 +1,26 @@
 .listStat {
-    flex:1;
-    display: flex;  
+    display:        flex;  
     flex-direction: row;
-    align-items: flex-start;
-  }
-  
-  .listStat div {
-    margin-right: 10px;
-    margin-bottom: 0px;
-    height: 160px;
-    min-height: 100%;
-    width: 235px;
-  }
-  .listStat div:last-child {
-    margin-right: 0px;
-  }
-  
-  #Measurement, #Landmark {
-    flex: 1;  
-    overflow-y: auto;
-    overflow-x: hidden;
-  }
-  
-  #statsCheckboxes {
-    flex: 1;
-    /* min-width: max-content; */
-  }
+    align-items:    stretch;
+}
+
+.listStat div:not(.listStatBoxes) {
+  margin-right: 10px;
+  margin-bottom: 0px;
+}
+
+#Measurement, #Landmark {
+  flex: 1;
+  height: 160px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+#statsCheckbox {
+  flex-grow: 1;
+}
+
+#measurementBox, #landmarkBox {
+  height: fit-content;
+  flex-grow: 1;
+}

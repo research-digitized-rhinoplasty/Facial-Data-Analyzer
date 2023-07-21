@@ -1,11 +1,11 @@
 .feature_boxes {
     display: flex;
     flex-direction: column;
-  }
+    width: 90%;
+}
   
 .feature_boxes, .partFeat, .listStat, .listStat div {
     border:         1px solid black;
-    width:          fit-content;
     padding:        10px; 
     margin-bottom:  10px;
 }
@@ -16,4 +16,13 @@
 
 #submitButtonDiv {
   padding:10px;
+}
+
+#submitButton {
+  font-size: 14pt;
+  background-color: greenyellow;
+}
+
+#participantTableMessage {
+  margin: 10px;
 }

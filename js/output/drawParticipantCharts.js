@@ -8,10 +8,12 @@ function createParticipantChart(chartValues) {
       sessionStorage.setItem('participantChartData', JSON.stringify(chartValues))
       var data = generateParticipantChartData(chartValues.ethnicity, chartStyle)
   
-      var outputDiv = document.getElementById('output')
+      var outputDiv = document.getElementById('participantChartChoices')
       var chartDiv = document.createElement('div')
       chartDiv.id = 'participantChartOutput'
       chartDiv.style.display = "none"
+      chartDiv.style.margin = "auto"
+      chartDiv.style.width = "50%"
       outputDiv.appendChild(chartDiv)
   
       let arrayWrapper = [data[0]]

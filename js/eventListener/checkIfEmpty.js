@@ -6,9 +6,9 @@
 
 function checkIfEmptyDriver(emptyArr, landMeasChoice) {
     // check if html elements are emtpy, add to array
-    if(checkIfEmpty('genderCheckbox')) emptyArr.push('Gender')
-    if(checkIfEmpty('ethnicityCheckbox')) emptyArr.push('Ethnicity')
-    if(checkIfEmpty('surgeryCheckbox')) emptyArr.push('Facial Surgery')
+    if(checkIfEmpty('genderCheckboxDropdown')) emptyArr.push('Gender')
+    if(checkIfEmpty('ethnicityCheckboxDropdown')) emptyArr.push('Ethnicity')
+    if(checkIfEmpty('surgeryCheckboxDropdown')) emptyArr.push('Facial Surgery')
     if(checkIfEmpty(landMeasChoice)) emptyArr.push(landMeasChoice)
     if(checkIfEmpty('statsCheckbox')) emptyArr.push('Statistics')
     if(document.getElementById('ageStart').value=="") emptyArr.push('Age Start')

@@ -35,7 +35,7 @@
 <div class="feature_boxes">
   <div class="partFeat">
     <form id="genderBox">
-      <label id="genderLabel">Gender</label>
+      <label id="genderParentLabel">Gender</label>
       <br>
       <div class="multiSelect" id="gender">
         <select>
@@ -43,17 +43,17 @@
         </select>
         <div class="overSelect"></div>
       </div>
-      <div class="dropCheck" id="genderCheckbox">
+      <div class="dropCheck" id="genderCheckboxDropdown">
         <label><input type="checkbox" id="genderAll" />All</label>
         <label><input type="checkbox" id="M" />Male</label>
         <label><input type="checkbox" id="F" />Female</label>
-        <label><input type="checkbox" id="P" />P</label>
-        <label><input type="checkbox" id="O" />O</label>
+        <label><input type="checkbox" id="P" />Prefer not to say</label>
+        <label><input type="checkbox" id="O" />Other</label>
       </div>
     </form>
 
     <form id="ethnicityBox">
-      <label id="ethnicityLabel">Ethnicity</label>
+      <label id="ethnicityParentLabel">Ethnicity</label>
       <br>
       <div class="multiSelect" id="ethnicity">
         <select>
@@ -61,7 +61,7 @@
         </select>
         <div class="overSelect"></div>
       </div>
-      <div class="dropCheck" id="ethnicityCheckbox">
+      <div class="dropCheck" id="ethnicityCheckboxDropdown">
         <label><input type="checkbox" id="ethnicityAll" />All</label>
         <label><input type="checkbox" />White</label>
         <label><input type="checkbox" />Black or African American</label>
@@ -73,7 +73,7 @@
     </form>
 
     <form id="surgeryBox">
-      <label id="surgeryLabel">Facial Surgery</label>
+      <label id="surgeryParentLabel">Facial Surgery</label>
       <br>
       <div class="multiSelect" id="surgery">
         <select>
@@ -81,7 +81,7 @@
         </select>
         <div class="overSelect"></div>
       </div>
-      <div class="dropCheck" id="surgeryCheckbox">
+      <div class="dropCheck" id="surgeryCheckboxDropdown">
         <label><input type="checkbox" id="surgeryAll" />Any</label>
         <label><input type="checkbox" />No Facial Surgery</label>
         <label><input type="checkbox" />Brow/forehead lift</label>
@@ -106,27 +106,33 @@
     <form id="ageEndForm">
       <label for="ageEnd">Age End</label>
       <br>
-      <input type="number" id="ageEnd" min="0" max="100" value="25"/>
+      <input type="number" id="ageEnd" min="0" max="100" value="99"/>
     </form>
   </div>
 
   <div class="listStat">
-    <div id="Measurement">
+    <div id="measurementBox">
       <input type="radio" id="measChoice" name="listStatGroup" autocomplete="off" checked>
-      <label for="measChoice"><strong>Measurements</strong></label>
+      <label for="measChoice" id="measurementLabel"><strong>Measurements</strong></label>
       <button id="selectAllMeasurement">Select All</button>
-      <br><hr>
+      </br><hr>
+      <div id="Measurement" class="listStatBoxes">
+
+      </div>
     </div>
-    <div id="Landmark">
+    <div id="landmarkBox">
       <input type="radio" id="landChoice" name="listStatGroup" autocomplete="off">
       <label for="landChoice"><strong>Landmarks</strong></label>
       <button id="selectAllLandmark">Select All</button>
       <br><hr>
+      <div id="Landmark" class="listStatBoxes">
+
+      </div>
     </div>
-    <div id="statsCheckbox">
+    <div id="statsCheckbox" class="listStatBoxes">
       <label><strong>Statistics</strong></label><br><hr>
       <input type="checkbox" id="Average">
-      <label for="Average">Average</label><br>
+      <label for="Average">Mean</label><br>
       <input type="checkbox" id="Standard_Deviation">
       <label for="Standard_Deviation">Standard Deviation</label><br>
       <input type="checkbox" id="Minimum">
@@ -140,13 +146,14 @@
 </div>
 
 <div id="submitButtonDiv">
-<button id="submitButton">Submit</button>
+<button id="submitButton">See Statistical Results</button>
 </div>
 
 
 <div id="errorOutput"></div>
 
 <div id="output" style="display: none;">
+  <div id="participantTableMessage"></div>
   <div style="margin-bottom: 10px;">
     <input type="radio" id="tableRadio" name="outputDisplayGroup" autocomplete="off" checked>
     <label for="tableRadio">Table</label>
@@ -154,23 +161,8 @@
     <label for="chartRadio">Chart</label>
   </div>
 
-  <div id="tableOutput">
-    <div id="participantOutput">
-    </div>
-    <div id="statsOutputBox">
-      <strong>Statistics</strong>
-      <div id="statsHeader">
-        <div id="statsOutput"></div>
-        <div id="statsChartBox">
-          <div id="statsChartChoices">
-            <input type="radio" id="statHistogramChart" value="histogram" name="statsChartStyleGroup" autocomplete="off" checked>
-            <label for="statHistogramChart">Histogram</label>
-            <input type="radio" id="boxChart" value="box" name="statsChartStyleGroup" autocomplete="off">
-            <label for="boxChart">Box Plot</label>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div id="tableOutput">    
+    <div id="participantOutput"></div>
   </div>
 
   <div id="participantChartChoices" style="display: none;">
@@ -191,6 +183,22 @@
       <label for="barChart">Bar</label>
     </div>
   </div>
+
+  <div id="statsOutputBox">
+    <strong>Statistics</strong>
+    <div id="statsHeader">
+      <div id="statsOutput"></div>
+      <div id="statsChartBox">
+        <div id="statsChartChoices">
+          <input type="radio" id="statHistogramChart" value="histogram" name="statsChartStyleGroup" autocomplete="off" checked>
+          <label for="statHistogramChart">Histogram</label>
+          <input type="radio" id="boxChart" value="box" name="statsChartStyleGroup" autocomplete="off">
+          <label for="boxChart">Box Plot</label>
+        </div>
+      </div>
+    </div>
+  </div> <!-- statsOutputBox -->
+
 </div>
 
 </body>

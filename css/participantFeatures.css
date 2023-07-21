@@ -1,15 +1,25 @@
 .partFeat {
   display: flex;
+  justify-content: space-between;
 }
 
 .partFeat form {
   padding-right: 10px;
+  flex-grow: 1;
 }
 
-.partFeat form:last-child {
+/* .partFeat form:last-child {
   padding-right: 0px;
+} */
+
+.partFeat form select, .partFeat form input {
+  width: 100%;
 }
 
-form select {
-  width: 150px;
+.dropCheck label input {
+  width: auto;
+}
+
+.partFeat form {
+  width: min-content;
 }

@@ -23,7 +23,7 @@
 .dropCheck {
   display: none;
   border: 1px #dadada solid;
-  padding: 5px;
+  /* padding: 5px; */
 }
 
 .dropCheck label {
