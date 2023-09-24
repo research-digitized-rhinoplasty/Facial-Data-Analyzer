@@ -2,9 +2,9 @@ var mysql = require('mysql')
 
 // server connection details
 const con = mysql.createConnection({
-    host: "127.0.0.1",
+    host: "webui-data-analysis-db.clazonvxlj23.us-east-1.rds.amazonaws.com",
     port: 3306,
-    user: "root",
+    user: "admin",
     password: "password",
     database: "rhinodb"
 }) // end con

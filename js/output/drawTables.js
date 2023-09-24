@@ -1,32 +1,46 @@
 function writeStats(json) {
     $('#output').css("display", "block")
-    $('#output').css("display", "block")
     $("#statsOutput").css("border", "1px solid black")
 
     let RecordsJSONArr = []
     let statJSON = {}
     let statIndex = 0;
 
+    let columnsArr = []
+    columnsArr.push({
+      field: 'name', text: 'Name', size: '25%'
+    })
+
+    for(var key in json) {
+      let colSize = 75 / Object.keys(json[key]).length
+      for(var statistic in json[key]) {
+        var statStr = statistic.replace("_", " ")
+        columnsArr.push({
+          field: statStr, text: statStr, size: colSize + '%'
+        })
+      } // end statistic in json[key]
+      break
+    } // end for key in json
+
     for(var key in json) { // 32168394
       if(json.hasOwnProperty(key)) {
-        var values = json[key]
         statJSON["name"] = key
-        for(var value in values) {
+        let keyJson = json[key]
+        
+        for(var statistic in keyJson) {
           statJSON["recid"] = statIndex
-          statJSON["statistic"] = value
-          statJSON["value"] = values[value]
-          let copy = JSON.parse(JSON.stringify(statJSON))
-          RecordsJSONArr.push(copy)
-          statIndex += 1
+          statJSON[statistic.replace("_", " ")] = keyJson[statistic]
         } // end for value
+        let copy = JSON.parse(JSON.stringify(statJSON))
+        RecordsJSONArr.push(copy)
+        statIndex += 1
       } // end if
     } // end for key
   
-    writeW2ui(RecordsJSONArr, 'statsGrid')
-
+    writeW2ui(RecordsJSONArr, columnsArr, 'statsGrid')
 } // end writeStats
 
-function writeW2ui(jsonArr, grid) {
+function writeW2ui(jsonArr, statsColArr, grid) {
   $().w2destroy(grid)
   if(grid=='participantGrid') {
     $('#participantOutput').w2grid({
@@ -45,11 +59,7 @@ function writeW2ui(jsonArr, grid) {
     $('#statsOutput').w2grid({
       name   : grid,
       recid  : 'recid',
-      columns: [
-          { field: 'name', text: 'Name', size: '40%'},
-          { field: 'statistic', text: 'Statistic', size: '40%'},
-          { field: 'value', text: 'Value', size: '20%'}
-      ],
+      columns: statsColArr,
       records: jsonArr
   });
   }

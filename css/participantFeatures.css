@@ -8,10 +8,6 @@
   flex-grow: 1;
 }
 
-/* .partFeat form:last-child {
-  padding-right: 0px;
-} */
-
 .partFeat form select, .partFeat form input {
   width: 100%;
 }

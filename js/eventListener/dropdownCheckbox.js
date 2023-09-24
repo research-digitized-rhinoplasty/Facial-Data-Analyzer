@@ -15,7 +15,7 @@ window.addEventListener("load", () => {
                     e.checked = true
                 } else {
                     e.checked = false
-                }// end if
+                } // end if else
             }) // end forEach
         }) // end eventListener
     } // end selectAll
@@ -32,10 +32,9 @@ window.addEventListener("load", () => {
     } // end deselectAllButton
 
     var expanded = false;
-    var alreadyExpanded = "";
+    var alreadyExpanded = false;
 
     let elements = document.getElementsByClassName('multiSelect')
-    // let checkboxInputs = document.querySelectorAll('[id$=ParentLabel]')
     for(var i=0; i<elements.length; i++) {
         elements[i].addEventListener("click", showCheckboxes)
     } // end for
@@ -44,14 +43,13 @@ window.addEventListener("load", () => {
         var dropCheck = this.id + "CheckboxDropdown"
         var checkboxes = document.getElementById(dropCheck)
         var otherCheckboxes = document.querySelectorAll('[id$=CheckboxDropdown]:not(#'+ dropCheck +')')
-
         deselectAllButton(this.id, dropCheck)
         selectAll(this.id, dropCheck)
 
         if (!expanded) {
             checkboxes.style.display = "flex"
             checkboxes.style.flexDirection = "column"
-            
+
             expanded = true
             alreadyExpanded = dropCheck
         } else if(expanded && dropCheck!=alreadyExpanded) {

@@ -27,7 +27,7 @@ module.exports = {
     }, // end getMeasurements
 
     sqlCombiner: function sqlCombiner(parent, json) {
-        // combines participant feature strings for sql statements used in parentNode.js
+        // combines participant feature strings for sql statements used in server.js
         let sql = ""
         if(json.length>1) {
           sql = "AND (Par." + parent + "='" + json[0] + "'"

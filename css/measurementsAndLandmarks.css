@@ -1,22 +1,33 @@
 .listStat {
-    display:        flex;  
-    flex-direction: row;
-    align-items:    stretch;
+  display: flex;  
+  flex-direction: row;
+  align-items: stretch;
 }
-
-.listStat div:not(.listStatBoxes) {
+  
+.listStat div:not(.listStatBoxes, #landmarkBox) {
   margin-right: 10px;
   margin-bottom: 0px;
 }
-
+  
 #Measurement, #Landmark {
   flex: 1;
-  height: 160px;
+  height: 250px;
   overflow-y: auto;
   overflow-x: hidden;
 }
 
-#statsCheckbox {
+#statsChoices {
+  border:         1px solid black;
+  padding:        10px;
+  margin-bottom:  0px;
+}
+
+#statsCheckboxes {
+  display:        flex;
+  flex-direction: row;
+}
+
+#statsCheckboxes div {
   flex-grow: 1;
 }
 

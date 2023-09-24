@@ -1,28 +1,28 @@
 #output {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 10px;
-  }
-  
-  #statsOutput {
-    height:         200px;
-    width:          90%;
-    margin-bottom: 10px;
-  }
-  
-  #participantOutput {
-    height: 600px;
-    width:  90%;
-    margin-bottom: 10px;
-  }
-  
-  #chartFeatureChoices, #participantChartStyleChoices, #statsChartChoices {
-    border:   1px solid black;
-    width:    fit-content;
-    padding:  5px;
-    margin:   10px;
-  }
-  
-  #statsChartOutput {
-    width: 90%;
-  }
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+#statsOutput {
+  height:         300px;
+  width:          90%;
+  margin-bottom:  10px;
+}
+
+#participantOutput {
+  height: 420px;
+  width:  90%;
+  margin-bottom: 10px;
+}
+
+#chartFeatureChoices, #participantChartStyleChoices, #statsChartChoices {
+  border:   1px solid black;
+  width:    fit-content;
+  padding:  5px;
+  margin:   10px;
+}
+
+#statsChartOutput {
+  width: 90%;
+}

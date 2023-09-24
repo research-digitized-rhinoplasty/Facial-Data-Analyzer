@@ -4,6 +4,7 @@
  * Compilates a JSON to send to node file from HTML user choices
  */
 
+
 window.addEventListener("load", () => {
   document.getElementById('submitButton').addEventListener("click", function(){
     // listen for user click submit button
@@ -24,7 +25,7 @@ window.addEventListener("load", () => {
 
     // gets all user selected stat choices
     let stats = []
-    let statCheckbox = document.querySelectorAll('#statsCheckbox input[type=checkbox]:checked')
+    let statCheckbox = document.querySelectorAll('#statsCheckboxes div input[type=checkbox]:checked')
     for(var i=0; i<statCheckbox.length; i++) {
       stats.push(statCheckbox[i].id)
     } // end for
@@ -58,7 +59,7 @@ window.addEventListener("load", () => {
       landmark_measurement_choice:  landMeasChoice
     }
 
-    console.log(zaJson)
+    // console.log(zaJson)
 
     testPost(zaJson)
   });
@@ -66,19 +67,26 @@ window.addEventListener("load", () => {
   function testPost(zaJson) { // send POST request to node server
       $.ajax({
         method: 'POST',
-        url: 'http://localhost:8000',
-        data: zaJson,
-        datatype: 'application/json',
+        url:        'https://agqvkjhuy0.execute-api.us-east-1.amazonaws.com',
+        data:       JSON.stringify(zaJson),
+        dataType:   'json',
+        contentType: 'text/plain',
+        // url: 'http://localhost:8000',
+        // data: zaJson,
+        // datatype: 'application/json',
         success: function(data) { // https://www.tutorialsteacher.com/jquery/jquery-ajax-method
           // write output to tables, charts, and console
-          console.log(data)
+          let res = data.body
+          // console.log(data)
           $('#errorOutput').empty()
+
           let resultStatement = document.getElementById('participantTableMessage')
-          resultStatement.innerHTML = "Presenting statistics for " + data.participants.length + " data instances"
-          writeStats(data.statistics)
-          writeW2ui(data.participants, 'participantGrid')
-          createParticipantChart(data.partChartValues)
-          createStatsChart(data.statsRawData)
+          resultStatement.innerHTML = "Presenting statistics for " + res.participants.length + " data instances"
+
+          writeStats(res.statistics)
+          writeW2ui(res.participants, [], 'participantGrid')
+          createParticipantChart(res.partChartValues)
+          createStatsChart(res.statsRawData)
         } // end success
       }); // end testPost
   } // end testPost

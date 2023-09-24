@@ -1,37 +1,75 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Statistics</title>
-<script type="text/javascript" src="../js/JSONCheckParseSend.js"></script>
-<script type="text/javascript" src="../js/eventListener/displayLandmarksMeasurements.js"></script>
-<script type="text/javascript" src="../js/eventListener/dropdownCheckbox.js"></script>
-<script type="text/javascript" src="../js/eventListener/checkIfEmpty.js "></script>
-<script type="text/javascript" src="../js/eventListener/chartListeners.js "></script>
+<title>Data Analysis of 3D Facial Measurements and Landmark Locations</title>
+<script type="text/javascript" src="js/JSONCheckParseSend.js"></script>
+<script type="text/javascript" src="js/eventListener/displayLandmarksMeasurements.js"></script>
+<script type="text/javascript" src="js/eventListener/dropdownCheckbox.js"></script>
+<script type="text/javascript" src="js/eventListener/checkIfEmpty.js "></script>
+<script type="text/javascript" src="js/eventListener/chartListeners.js "></script>
 
-<script type="text/javascript" src="../js/output/drawParticipantCharts.js"></script>
-<script type="text/javascript" src="../js/output/drawStatsChart.js"></script>
-<script type="text/javascript" src="../js/output/drawTables.js "></script>
-
-
-<script type="text/javascript" src="../js/jquery/jquery-3.6.1.js"></script>
+<script type="text/javascript" src="js/output/drawParticipantCharts.js"></script>
+<script type="text/javascript" src="js/output/drawStatsChart.js"></script>
+<script type="text/javascript" src="js/output/drawTables.js "></script>
 
 
-<script type="text/javascript" src="http://w2ui.com/src/w2ui-1.5.min.js"></script>
-<script src='https://cdn.plot.ly/plotly-2.18.2.min.js'></script>
-<link rel="stylesheet" type="text/css" href="http://w2ui.com/src/w2ui-1.5.min.css" />
+<script type="text/javascript" src="external_libraries/jquery-3.6.1.js"></script>
+
+
+<script type="text/javascript" src="external_libraries/w2ui-1.5/w2ui-1.5.js"></script>
+<script src='external_libraries/plotly-2.20.0.min.js'></script>
+<link rel="stylesheet" type="text/css" href="external_libraries/w2ui-1.5/w2ui-1.5.css" />
 
 <!-- JSON Parser webpage interface for inserting 3D Landmark Markings and Measurements into a database -->
-<link rel="stylesheet" href="../css/main.css">
-<link rel="stylesheet" href="../css/participantFeatures.css">
-<link rel="stylesheet" href="../css/measurementsAndLandmarks.css">
-<link rel="stylesheet" href="../css/dropdownCheckbox.css">
-<link rel="stylesheet" href="../css/output.css">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/participantFeatures.css">
+<link rel="stylesheet" href="css/measurementsAndLandmarks.css">
+<link rel="stylesheet" href="css/dropdownCheckbox.css">
+<link rel="stylesheet" href="css/output.css">
 
 </head>
 <body>
 
-<h1>Statistics</h1>
+<div class="desc">
+  <h3>Data Analysis of 3D Facial Measurements and Landmark Locations</h3>
+  <h4>
+    This webpage offers users a tool to delve into statistical data on facial landmarks and measurements, derived from three-dimensional facial scans. These measurements encompass distance, surface, angle, ratio, area, and volume metrics.
+  <br>
+    The specifics regarding the measurements and locations are rooted in the comprehensive literature review by Celikoyar et al. (2021). Detailed descriptions and specifics about these landmarks and measurements are accessible on the <a target="_blank" rel="noopener noreferrer" href="http://digitized-rhinoplasty.com/app/educator.html">Facial Educator</a> page.
+  <br>
+    The new innovative area and volume measurements were introduced in the articles published by Celikoyar et al. (2023) and by Topsakal et al. (2023)
+  </h4>
 
+  <h4>
+    <i>References:</i>
+    <ul>
+      <li>M. Mazhar Celikoyar, Michael Perez, Mustafa Ilhan Akbaş, and Oguzhan Topsakal. "Facial Surface Anthropometric Features and Measurements With an Emphasis on Rhinoplasty", Aesthetic Surgery Journal (2021), (<a target="_blank" rel="noopener noreferrer" href="https://doi.org/10.1093/asj/sjab190">https://doi.org/10.1093/asj/sjab190</a>)</li>
+      <li>M. Mazhar Celikoyar, Oguzhan Topsakal, and Philip Sawyer, "Three-dimensional (3D) Area and Volume Measurements for Rhinoplasty," Aesthetic Plastic Surgery Journal (2023) (<a target="_blank" rel="noopener noreferrer" href="https://doi.org/10.1016/j.bjps.2023.04.082">https://doi.org/10.1016/j.bjps.2023.04.082</a>)</li>
+      <li>Oguzhan Topsakal, Philip Sawyer, Tahir Cetin Akinci, and M. Mazhar Celikoyar, “Algorithms to Measure Area and Volume on 3D Face Models for Facial Surgeries”. IEEE Access Journal (2023) (<a target="_blank" rel="noopener noreferrer" href="https://ieeexplore.ieee.org/document/10103868">https://ieeexplore.ieee.org/document/10103868</a>)</li>
+    </ul>
+  </h4>
+
+  
+  <h4>
+    <strong>3D Facial Dataset and Demographics:</strong><br>
+    The 3D facial scans were collected via an iOS app that was distributed at the Apple App Store between July 2022 and December 2022. Additional insights into the iOS mobile application, Institutional Review Board (IRB) approval, and the associated data gathering procedures can be accessed at the <a target="_blank" rel="noopener noreferrer" href="https://digitized-rhinoplasty.com/face-scanner-app/">Face Scanner iOS App</a> page. Participant demographic and clinical details, including gender, ethnicity, facial surgery history, and age presented within this resource, were collated from questionnaires completed by the participants at the time of their 3D facial scan submissions.
+  </h4>
+
+  <h4>
+    <strong>Marking of Landmarks and Calculations of the Measurements:</strong><br>
+    The facial landmarks have been meticulously annotated using the <a target="_blank" rel="noopener noreferrer" href="http://digitized-rhinoplasty.com/app-aws/analyzer.html">Face Analyzer tool</a> by a medical student. Subsequent validation for the accuracy of these landmarks was conducted by an experienced rhinoplasty surgeon. The measurements were auto calculated by the Face Analyzer tool as they were marked. The resulting landmark coordinates and respective measurements have been stored in a dedicated database. Our web-based graphical user interface (GUI) (seen below) was designed to retrieve this data and visually represent individual participant details and statistical aggregates.
+  </h4>
+
+  <h4>
+    <strong>Application in Surgical Practices:</strong><br>
+    Craniofacial, reconstructive, and facial surgeons often employ facial analysis during the pivotal stages of planning and assessment in both cosmetic and facial reconstructive procedures. Establishing a foundation based on facial norms is instrumental for these surgeons, enabling them to make informed decisions regarding apt surgical modifications. Through the development of this resource, our aim is to bridge the knowledge gap by furnishing craniofacial, reconstructive, and cosmetic facial surgeons with a comprehensive normative dataset.
+  </h4>
+  <br>
+
+  <h3><strong>Please make your selections below and then click on the 'See Statistical Results' to query: </strong></h3>
+
+
+</div>
 <div class="feature_boxes">
   <div class="partFeat">
     <form id="genderBox">
@@ -114,33 +152,47 @@
     <div id="measurementBox">
       <input type="radio" id="measChoice" name="listStatGroup" autocomplete="off" checked>
       <label for="measChoice" id="measurementLabel"><strong>Measurements</strong></label>
-      <button id="selectAllMeasurement">Select All</button>
+      <button id="selectAllMeasurement">Select / Deselect All</button>
       </br><hr>
       <div id="Measurement" class="listStatBoxes">
 
       </div>
     </div>
+
     <div id="landmarkBox">
       <input type="radio" id="landChoice" name="listStatGroup" autocomplete="off">
       <label for="landChoice"><strong>Landmarks</strong></label>
-      <button id="selectAllLandmark">Select All</button>
+      <button id="selectAllLandmark">Select / Deselect All</button>
       <br><hr>
       <div id="Landmark" class="listStatBoxes">
 
       </div>
     </div>
-    <div id="statsCheckbox" class="listStatBoxes">
-      <label><strong>Statistics</strong></label><br><hr>
-      <input type="checkbox" id="Average">
-      <label for="Average">Mean</label><br>
-      <input type="checkbox" id="Standard_Deviation">
-      <label for="Standard_Deviation">Standard Deviation</label><br>
-      <input type="checkbox" id="Minimum">
-      <label for="Minimum">Minimum</label><br>
-      <input type="checkbox" id="Maximum">
-      <label for="Maximum">Maximum</label><br>
-      <input type="checkbox" id="Median">
-      <label for="Median">Median</label><br>
+  </div>
+  <div id="statsChoices">
+    <label><strong>Statistics</strong></label><br><hr>
+    <div id="statsCheckboxes">
+      <div>
+        <input type="checkbox" id="Average">
+        <label for="Average">Mean</label>
+      </div>
+      <div>
+        <input type="checkbox" id="Standard_Deviation">
+        <label for="Standard_Deviation">Standard Deviation</label>
+      </div>     
+      <div>
+        <input type="checkbox" id="Minimum">
+        <label for="Minimum">Minimum</label>
+      </div>
+      <div>
+        <input type="checkbox" id="Maximum">
+        <label for="Maximum">Maximum</label>
+      </div>
+      <div>
+        <input type="checkbox" id="Median">
+        <label for="Median">Median</label>
+      </div>
+      
     </div>
   </div>
 </div>
@@ -152,8 +204,9 @@
 
 <div id="errorOutput"></div>
 
-<div id="output" style="display: none;">
+<div id="output" style="display: none;">  
   <div id="participantTableMessage"></div>
+  <h3 style="margin: 5px;">Participant Information</h3>
   <div style="margin-bottom: 10px;">
     <input type="radio" id="tableRadio" name="outputDisplayGroup" autocomplete="off" checked>
     <label for="tableRadio">Table</label>
@@ -161,7 +214,7 @@
     <label for="chartRadio">Chart</label>
   </div>
 
-  <div id="tableOutput">    
+  <div id="tableOutput">
     <div id="participantOutput"></div>
   </div>
 
@@ -185,7 +238,7 @@
   </div>
 
   <div id="statsOutputBox">
-    <strong>Statistics</strong>
+    <h3><strong>Statistics of Measurements / Landmarks</strong></h3>
     <div id="statsHeader">
       <div id="statsOutput"></div>
       <div id="statsChartBox">
@@ -200,6 +253,15 @@
   </div> <!-- statsOutputBox -->
 
 </div>
+
+<br>
+
+<div class="video-responsive">
+    <h3><i>To learn more about how to use the user interface, please review the video:</i></h3><br>
+    <iframe src="https://www.youtube.com/embed/378FEEnpN8k?controls=0" allowfullscreen="" width="1200" height="800" frameborder="0"></iframe>
+</div>
+
+<br>
 
 </body>
 </html>

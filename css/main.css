@@ -20,9 +20,18 @@
 
 #submitButton {
   font-size: 14pt;
-  background-color: greenyellow;
+  background-color: yellowgreen;
 }
 
 #participantTableMessage {
   margin: 10px;
+}
+
+.desc h4, .desc h4 ul {
+  width: 90%;
+  text-align: justify;
+}
+
+h4 {
+  font-weight: normal;
 }

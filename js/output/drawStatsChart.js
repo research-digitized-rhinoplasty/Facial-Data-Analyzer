@@ -19,7 +19,7 @@ function createStatsChart(chartValues) {
     } else {
         sessionStorage.setItem('statsChartData', JSON.stringify(chartValues))
         refreshStatsChart(chartStyle)
-    }
+    } // end if else
 } // end createStatsChart
 
 function generateStatsChartData(chartValues, chartStyle) {
@@ -28,7 +28,8 @@ function generateStatsChartData(chartValues, chartStyle) {
     var trace = {
         x: chartValues[key],
         type: chartStyle,
-        name: key
+        name: key,
+        nbinsx: 10,
     } // end trace json
     plotList.push(JSON.parse(JSON.stringify(trace)))
     } // end for

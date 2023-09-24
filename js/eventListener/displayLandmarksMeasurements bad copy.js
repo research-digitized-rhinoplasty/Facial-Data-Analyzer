@@ -24,12 +24,11 @@ window.addEventListener("load", () => {
         $.ajax({
             method: 'POST',
             url: 'https://agqvkjhuy0.execute-api.us-east-1.amazonaws.com',
-            data:       JSON.stringify(zaJson),
-            dataType:   'json',
-            contentType: 'text/plain',
+            data: zaJson,
+            datatype: 'application/json',
             success: function(data) { // https://www.tutorialsteacher.com/jquery/jquery-ajax-method
-                showBox(data.body.Measurements, data.body.MeasurementAbbreviation, data.body.MeasurementType, "Measurement")
-                showBox(data.body.Landmarks, data.body.LandmarkAbbreviation, {}, "Landmark")
+                showBox(data.Measurements, data.MeasurementAbbreviation, data.MeasurementType, "Measurement")
+                showBox(data.Landmarks, data.LandmarkAbbreviation, {}, "Landmark")
             } // end success
         }); // end testPost
     } // end postCheckbox
@@ -85,6 +84,7 @@ window.addEventListener("load", () => {
     }) // end landmarkButton event listener
 
     function selectAllLandmarkOrMeasurement(thisId) {
+        // console.log(thisId)
         let flag
         let inputs = document.querySelectorAll('#' + thisId + ' input[type=checkbox]:not(:checked)')
         if(inputs.length>0) {

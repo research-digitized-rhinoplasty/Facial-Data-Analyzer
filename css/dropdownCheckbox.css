@@ -1,13 +1,5 @@
 /* dropdown box stuff */
 
-/* form {
-  border:         1px solid black;
-  width:          fit-content;
-  padding:        10px; 
-  margin-bottom:  10px;
-} */
-
-
 .multiSelect {
   position: relative;
 }
@@ -23,7 +15,7 @@
 .dropCheck {
   display: none;
   border: 1px #dadada solid;
-  /* padding: 5px; */
+  padding: 5px;
 }
 
 .dropCheck label {
