@@ -10,7 +10,7 @@ function checkIfEmptyDriver(emptyArr, landMeasChoice) {
     if(checkIfEmpty('ethnicityCheckboxDropdown')) emptyArr.push('Ethnicity')
     if(checkIfEmpty('surgeryCheckboxDropdown')) emptyArr.push('Facial Surgery')
     if(checkIfEmpty(landMeasChoice)) emptyArr.push(landMeasChoice)
-    if(checkIfEmpty('statsCheckbox')) emptyArr.push('Statistics')
+    if(checkIfEmpty('statsCheckboxes')) emptyArr.push('Statistics')
     if(document.getElementById('ageStart').value=="") emptyArr.push('Age Start')
     if(document.getElementById('ageEnd').value=="") emptyArr.push('Age End')
 

@@ -13,7 +13,10 @@ function createStatsChart(chartValues) {
         outputDiv.appendChild(chartDiv)
 
         var layout = {
-        title: 'Statistics'
+            title: 'Statistics',
+            yaxis: {
+                automargin: true
+            }
         }
         Plotly.newPlot('statsChartOutput', plotList, layout)
     } else {
@@ -30,6 +33,9 @@ function generateStatsChartData(chartValues, chartStyle) {
         type: chartStyle,
         name: key,
         nbinsx: 10,
+        yaxis: {
+            automargin: true
+        }
     } // end trace json
     plotList.push(JSON.parse(JSON.stringify(trace)))
     } // end for
@@ -39,6 +45,11 @@ function generateStatsChartData(chartValues, chartStyle) {
 function refreshStatsChart(chartStyle) {
     let dataCopy = JSON.parse(sessionStorage.getItem('statsChartData'))
     var plotList = generateStatsChartData(dataCopy, chartStyle)
-    var layout = {title: 'Statistics'}
+    var layout = {
+        title: 'Statistics',
+        yaxis: {
+            automargin: true
+        }
+    }
     Plotly.newPlot('statsChartOutput', plotList, layout)
 } // end refreshStatsChart

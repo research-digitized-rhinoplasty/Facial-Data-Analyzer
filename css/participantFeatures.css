@@ -8,13 +8,13 @@
   flex-grow: 1;
 }
 
-.partFeat form select, .partFeat form input {
+.partFeat form select, #ageStart, #ageEnd {
   width: 100%;
 }
 
-.dropCheck label input {
+/* .dropCheck label input {
   width: auto;
-}
+} */
 
 .partFeat form {
   width: min-content;

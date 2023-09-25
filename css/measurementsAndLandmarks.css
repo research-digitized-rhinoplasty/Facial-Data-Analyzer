@@ -3,10 +3,24 @@
   flex-direction: row;
   align-items: stretch;
 }
-  
-.listStat div:not(.listStatBoxes, #landmarkBox) {
-  margin-right: 10px;
+
+#Measurement div, #Landmark div {
   margin-bottom: 0px;
+  border: none;
+}
+
+#MeasurementBox {
+  margin-right: 10px;
+}
+
+#Measurement div, #Landmark div {
+  display: flex;
+  padding: 0px;
+}
+
+#Measurement label, #Landmark label {
+  padding-left: 10px;
+  margin-bottom: 10px;
 }
   
 #Measurement, #Landmark {
@@ -14,6 +28,11 @@
   height: 250px;
   overflow-y: auto;
   overflow-x: hidden;
+}
+
+#measurementBox, #landmarkBox {
+  height: fit-content;
+  flex-grow: 1;
 }
 
 #statsChoices {
@@ -28,10 +47,11 @@
 }
 
 #statsCheckboxes div {
+  display: flex;
   flex-grow: 1;
 }
 
-#measurementBox, #landmarkBox {
-  height: fit-content;
-  flex-grow: 1;
+#statsCheckboxes label {
+  padding-left: 10px;
 }
+

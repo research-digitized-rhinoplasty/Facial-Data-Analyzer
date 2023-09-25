@@ -92,7 +92,10 @@ function generateParticipantChartData(chartValues, chartType) {
 
   var layout = {
     height: 600,
-    width: 750
+    width: 750,
+    yaxis: {
+      automargin: true
+    }
   };
 
   return [jsonWrapper, layout]

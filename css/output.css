@@ -23,6 +23,10 @@
   margin:   10px;
 }
 
+#chartFeatureChoices label:not(:last-child), #participantChartStyleChoices label:not(:last-child), #statsChartChoices label:not(:last-child) {
+  padding-right: 15px;
+}
+
 #statsChartOutput {
   width: 90%;
 }

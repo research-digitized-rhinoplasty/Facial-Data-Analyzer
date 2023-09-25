@@ -19,5 +19,14 @@
 }
 
 .dropCheck label {
-  display: block;
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.dropCheck label:last-child {
+  margin-bottom: 0px;
+}
+
+.dropCheck label input {
+  margin-right: 10px;
 }

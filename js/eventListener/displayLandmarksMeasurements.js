@@ -47,6 +47,7 @@ window.addEventListener("load", () => {
                     var typeHeader = document.createElement('label')
                     typeHeader.style.fontWeight = "bold"
                     typeHeader.style.padding = "5px"
+                    typeHeader.style.marginBottom = "0px"
                     typeHeader.appendChild(document.createTextNode(type[i]))
 
                     if(typeFlag!="") {myDiv.appendChild(br)} 
@@ -56,20 +57,20 @@ window.addEventListener("load", () => {
                 } // end typeFlag if
             } // end divId if
 
+
             var checkbox = document.createElement('input')
             checkbox.type = "checkbox"
-            checkbox.style.fontWeight
             checkbox.id = name[i]
             checkbox.value = abbrv[i]
             var label = document.createElement('label')
             label.htmlFor = name[i]
             label.appendChild(document.createTextNode(name[i]))
-            var br = document.createElement('br')
 
-            myDiv.appendChild(checkbox)
-            myDiv.appendChild(label)
-            myDiv.appendChild(br)
-            // if(typeFlag!=type[i+1]) myDiv.appendChild(br)
+            var div = document.createElement('div')
+            div.appendChild(checkbox)
+            div.appendChild(label)
+
+            myDiv.appendChild(div)
         } // end for
     } // end showBox
 
