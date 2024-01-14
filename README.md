@@ -1,5 +1,5 @@
 # Digitized Rhinoplasty - Web-based Software for Data Analysis of 3D Facial Measurements and Landmark Locations
-Created to work with Dr. Oguzhan Topsakal's Digitized Rhinoplasty for my Masters Project.
+Created for the Digitized Rhinoplasty Project.
 
 To start:
 
